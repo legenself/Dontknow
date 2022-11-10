@@ -1,0 +1,51 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
+  </PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
+		<PackageReference Include="HandyControls" Version="3.4.2" />
+		<PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+		<PackageReference Include="Ookii.Dialogs.Wpf" Version="5.0.1" />
+		<PackageReference Include="System.Reactive" Version="5.0.0" />
+		<PackageReference Include="WPF-UI" Version="2.0.3" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+		<Resource Include="Resources\**" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+		<Content Include="icon.ico" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+		<Resource Include="icon.ico" />
+		<Resource Include="icon.png" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+		<None Update="stopwords.txt">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="token.txt">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Page Update="Utils\AppResource.xaml">
+			<XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+		</Page>
+	</ItemGroup>
+</Project>

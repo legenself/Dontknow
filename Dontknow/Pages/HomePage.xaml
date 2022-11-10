@@ -1,0 +1,164 @@
+﻿<ui:UiPage
+    x:Class="DontKnow.Pages.HomePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+       xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      xmlns:local="clr-namespace:DontKnow.Pages"
+            d:DataContext="{d:DesignInstance  local:HomePage,
+                                     IsDesignTimeCreatable=False}"
+      mc:Ignorable="d"  Scrollable="True"
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="HomePage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Border
+            Grid.Row="0"
+            Height="190"
+            CornerRadius="8,0,0,0">
+            <!--<Border.Background>
+                <ImageBrush
+                    ImageSource="../Resources/fluent-ui-microsoft.png"
+                    RenderOptions.BitmapScalingMode="HighQuality"
+                    Stretch="UniformToFill" />
+            </Border.Background>-->
+            <Border CornerRadius="8,0,0,0">
+                <Border.Background>
+                    <RadialGradientBrush>
+                        <GradientStop Offset="0" Color="#1F000000" />
+                        <GradientStop Offset="1" Color="#4F000000" />
+                    </RadialGradientBrush>
+                </Border.Background>
+                <Grid>
+                    <StackPanel Visibility="{Binding ViewModel.HasData,Converter={StaticResource Boolean2VisibilityReConverter}}"
+                        Margin="24"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Background="Transparent">
+        
+                        <TextBlock
+                            FontSize="28"
+                            FontWeight="Bold"
+                            Foreground="#FFFFFF"
+                              >
+                            知之为知之，不知为不知
+                        </TextBlock>
+                        <TextBlock
+                            FontSize="18"
+                            Foreground="#B7FFFFFF" Visibility="{Binding ViewModel.HasNew,Converter={StaticResource Boolean2VisibilityConverter}}"
+                              >
+                           使用 不知 快速找到自己不太熟悉的 变量名
+                        </TextBlock>
+                        <ui:Button
+                            Height="36"
+                            Margin="0,6,0,0"
+                            Padding="30,6"
+                            HorizontalAlignment="Left"
+                            Appearance="Transparent" 
+                            Click="Button_Click"
+                            CommandParameter="navigate_to_controls"
+                            Content="立即导入项目"
+                           />
+                    </StackPanel>
+                    <StackPanel Visibility="{Binding ViewModel.HasData,Converter={StaticResource Boolean2VisibilityConverter}}"
+                        Margin="24"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Background="Transparent">
+                  
+                        <TextBlock
+                            FontSize="28"
+                            FontWeight="Bold"
+                            Foreground="#FFFFFF"
+                              >
+                            <Run>有</Run>
+                            <Run Text="{Binding ViewModel.Left,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"></Run>
+                            <Run>个词汇需要复习</Run>
+                        </TextBlock>
+                        <TextBlock
+                            FontSize="18"
+                            Foreground="#B7FFFFFF" Visibility="{Binding ViewModel.HasNew,Converter={StaticResource Boolean2VisibilityConverter}}"
+                              >
+                            <Run>有</Run>
+                            <Run Text="{Binding ViewModel.NewCount,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"></Run>
+                            <Run>个新词汇</Run>
+                        </TextBlock>
+                        <ui:Button
+                            Height="36"
+                            Margin="0,6,0,0"
+                            Padding="30,6"
+                            HorizontalAlignment="Left"
+                            Appearance="Transparent" 
+                            CommandParameter="navigate_to_controls"
+                            Content="开始复习"
+                            Click="Button_Click_1"
+                           />
+                    </StackPanel>
+                    <TextBlock
+                        Margin="12"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Bottom"
+                        FontSize="10"
+                        Foreground="#57FFFFFF"
+                        Text="Created by legen" />
+                </Grid>
+            </Border>
+        </Border>
+
+        <Grid Grid.Row="1" Margin="12,18,12,0">
+       
+            <ListBox Background="Transparent" BorderBrush="Transparent" ItemsSource="{Binding ViewModel.Projects,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate >
+                        <ui:CardAction
+           
+                CommandParameter="navigate_to_input"
+                
+                IsChevronVisible="False">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"></RowDefinition>
+                                    <RowDefinition Height="auto"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <StackPanel>
+                                    <TextBlock Grid.Row="0"
+                     
+                        FontSize="13"
+                        FontWeight="Medium"
+                        Text="{Binding Name}" />
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock
+                        FontSize="14"
+                    
+                          >
+                                            <Run Text="{Binding Review,Mode=OneWay}"></Run>
+                                      
+                                        </TextBlock>
+                                        <TextBlock Margin="4,0,0,0"
+                        FontSize="12"
+                        
+                           Text="{Binding Description}" />
+                                    </StackPanel>
+                              
+                                </StackPanel>
+                                <ProgressBar  Grid.Row="1" Margin="4" Value="{Binding Progress,Mode=OneWay}"></ProgressBar>
+                            </Grid>
+                      
+                        </ui:CardAction>
+
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+       
+         
+        </Grid>
+ 
+    </Grid>
+</ui:UiPage>
